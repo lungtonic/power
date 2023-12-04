@@ -1,0 +1,82 @@
+<html>
+ <head>
+ <title>Local Storage</title>
+ <script type="text/javascript">
+ const localStorage = window.localStorage;
+ const initialize = () => {
+ if (localStorage) {
+ const count = localStorage.getItem("visitCount") || 0;
+ const newCount = parseInt(count) + 1;
+ localStorage.setItem("visitCount", newCount);
+ }
+ updateDOM();
+ };
+ const updateDOM = () => {
+ const count = localStorage.getItem("visitCount") || 0;
+ const storedPreferences = localStorage.getItem("preference");
+ const preference = storedPreferences
+ ? JSON.parse(storedPreferences)
+ : {};
+ document.getElementById(
+ "visitCount"
+ ).innerHTML = `Visit count ${count}`;
+ document.body.style.background = preference.color || "white";
+ };
+ const setColorPreference = color => {
+ const localStorage = window.localStorage;
+ const preference = { color }
+ localStorage.setItem("preference", JSON.stringify(preference));
+ updateDOM();
+ };
+ </script>
+ </head>
+ <body onload="initialize()">
+ <button type="button" onclick="setColorPreference('red')">Red</button>
+ <button type="button"
+onclick="setColorPreference('green')">Green</button>
+ <button type="button"
+onclick="setColorPreference('blue')">Blue</button>
+ <div id="visitCount"></div>
+ <table>
+    
+        <h2>Ivy Information</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Registration number</th>
+        <th>Picture</th>
+      </tr>
+      <tr>
+        <td id="1">Brian Macharia</td>
+        <td id="2">SCT222-0124/2019</td>
+        <td id="3">
+          <img
+            src="c:\Users\user\Desktop\cup\mee.jpg"
+            alt="image"
+            width="80"
+            height="80"
+          />
+        </td>
+      </tr>
+    </table>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 0px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+
+ </table>
+ </body>
+</html>
+
